@@ -1,0 +1,84 @@
+//Joonhyuk Kim
+//9-08-2015
+//csm10j
+
+package ch3_prexercise1;
+// part a) import classes
+import java.util.Scanner;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+
+/**
+ *
+ * @author Lenmiukim
+ */
+public class Ch3_PrExercise1 {
+    public static void main(String[] args) throws FileNotFoundException{
+    
+        
+    // part b) declare inFile and outFile to be refrence
+    Scanner inFile;
+    PrintWriter outFile;
+        
+        // part c) write statements to open file to read in data, and 
+        // to output a file.
+        inFile = new Scanner(new FileReader("inData.txt"));
+        
+        //outFile = new PrintWriter("outData.txt");
+        outFile = new PrintWriter("outData.dat");
+        
+        // part d) declare variables
+        
+        double length, width; //first line rectangle
+        double radius, PI = 3.1416; //second line for circle
+        String firstName, lastName; 
+        int age;
+        double balance, rate;
+        char ch;
+        
+        //use of inFile to obtain value for length and width
+        length = inFile.nextDouble();
+        width = inFile.nextDouble();
+        
+        //use of outFile to print text and variables into a file
+        outFile.println("Rectangle: ");
+        outFile.print("Length = " + length);
+        outFile.print(", width = " + width);
+        
+        outFile.printf(", area = %.2f", length * width );
+        outFile.printf(", perimeter = %.2f %n", 2 * (length + width));
+        outFile.println();
+        
+        //get radius from inFile
+        radius = inFile.nextDouble();
+        //output " 
+        outFile.println("Circle: ");
+        outFile.print("Radius = " + radius);
+        outFile.printf(", area = %.2f", (PI * radius * radius));
+        outFile.printf(", Circumference = %.2f%n", (2 * PI * radius));
+        outFile.println();
+        
+        firstName = inFile.next();
+        lastName = inFile.next();
+        age = inFile.nextInt();
+        
+        balance = inFile.nextDouble();
+        rate = inFile.nextDouble();
+        //get char from string inside the file.
+        ch = (inFile.next()).charAt(0);
+        
+        outFile.println("Name: " + firstName + " " + lastName + ", age: " + age);
+        
+        outFile.printf("Beginning balance = $" + balance + ", interest rate ="
+                + " %.2f%n", rate);   
+        outFile.printf("Balance at the end of the month = $%.2f%n", balance + (balance * (rate/(12*100))));
+        outFile.println();
+        
+        outFile.println("The character that comes after "+ ch + " in the ASCII set is " + (char)(ch+1));
+        
+        // part e) close infile & outFile
+        inFile.close();
+        outFile.close();
+    }  
+}
